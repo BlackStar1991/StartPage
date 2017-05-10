@@ -1,0 +1,105 @@
+/*********************************************/
+/*@IMPORTS*/
+/*********************************************/
+@import "vendors/global";
+@import "helpers/global";
+@import "components/global";
+@import "helpers/mixins";
+/*********************************************/
+/*FONTS*/
+/*********************************************/
+
+//@include font-face("Arial", "../fonts/Arial/Arial", normal, eot ttf woff woff2);
+
+/*********************************************/
+/*MAIN STYLES*/
+/*********************************************/
+
+body {
+  font-family: sans-serif;
+  font-size: 16px;
+  min-width: 320px;
+  position: relative;
+}
+
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  &:hover,
+  &:focus,
+  &:active{
+    text-decoration: none;
+    color: black;
+  }
+}
+input, input:focus, button{
+  outline: none;
+}
+
+/*********************************************/
+/*TYPOGRAPHY*/
+/*********************************************/
+
+/*********************************************/
+/*STICKY FOOTER*/
+/*********************************************/
+
+.body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+}
+
+
+
+
+/*********************************************/
+/*HEADER*/
+/*********************************************/
+
+@import "sections/header";
+
+/*********************************************/
+/*SECTIONS*/
+/*********************************************/
+
+.mainWrapper{
+  position: relative;
+  width: 100%;
+  min-width: 320px;
+  height: 100%;
+  padding: 0;
+  margin: 0 !important;
+  overflow: hidden;
+}
+
+
+
+
+/*********************************************/
+/*FOOTER*/
+/*********************************************/
+
+@import "sections/footer";
+
+/*********************************************/
+/*@IMPORT MEDIA*/
+/*********************************************/
+
+@import "helpers/media";
