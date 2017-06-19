@@ -15,7 +15,7 @@ var gulp = require("gulp"),                             // gulp core
     imagemin = require('gulp-imagemin'),                // minify images
     pngquant = require('imagemin-pngquant'),            // minify png-format images
     spritesmith = require('gulp.spritesmith');          // create sprites
-// mainBowerFiles = require('gulp-main-bower-files');  // create mainBOWERfiles
+
 /*********************************************/
 /*BROWSERSYNC (LOCAL SERVER)*/
 /*********************************************/
@@ -162,18 +162,9 @@ function buildSprite() {
             imgName: '../img/sprite.png',
             cssName: '_sprite.scss',
             cssFormat: 'scss',
-            padding: 10
+            padding: 5
         }));
 
     spriteData.img.pipe(gulp.dest('./app/img'));
     return spriteData.css.pipe(gulp.dest('./app/sass/components'));
 }
-
-/*********************************************/
-/*mainBOWERfiles */
-/*********************************************/
-
-// gulp.task('TASKNAME', function() {
-//     return gulp.src(mainBowerFiles())
-//         .pipe(gulp.dest('dist/mainfiles'))
-// });

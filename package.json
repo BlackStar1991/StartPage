@@ -1,31 +1,25 @@
 {
-  "name": "ncu",
+  "name": "start_html",
   "version": "2.0.0",
+  "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Zirka Andry",
   "devDependencies": {
     "browser-sync": "^2.18.8",
-    "gulp": "^3.9.1",
+    "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",
-    "gulp-clean": "^0.3.2",
-    "gulp-if": "^2.0.2",
-    "gulp-imagemin": "^3.2.0",
+    "gulp-clean": "^0.3.1",
+    "gulp-if": "^2.0.0",
+    "gulp-imagemin": "^3.3.0",
     "gulp-minify-css": "^1.2.4",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
-    "gulp-spritesmith": "0.0.2",
-    "gulp-uglify": "^1.5.4",
+    "gulp-uglify": "^3.0.0",
     "gulp-useref": "^3.1.2",
     "gulp.spritesmith": "^6.2.1",
     "imagemin-pngquant": "^5.0.0",
     "main-bower-files": "^2.13.1"
-  },
-  "main": "gulpfile.js",
-  "dependencies": {
-    "main-bower-files": "^2.13.1"
-  },
-  "license": "ISC",
-  "description": ""
+  }
 }
