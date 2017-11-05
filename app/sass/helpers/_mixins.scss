@@ -25,9 +25,9 @@
 
 	@font-face {
 		font-family: quote($name);
-		font-style: $style;
-		font-weight: $weight;
 		src: $src;
+		font-weight: $weight;
+		font-style: $style;
 	}
 }
 

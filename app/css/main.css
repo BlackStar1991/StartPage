@@ -816,15 +816,17 @@ hr {
 /*********************************************/
 @font-face {
   font-family: "Tahoma";
-  font-style: normal;
+  src: url("../fonts/Tahoma/Tahoma.woff2") format("woff2"),
+  url("../fonts/Tahoma/Tahoma.woff") format("woff"),
+  url("../fonts/Tahoma/Tahoma.ttf") format("truetype");
   font-weight: 400;
-  src: url("../fonts/Tahoma/Tahoma.eot?") format("eot"), url("../fonts/Tahoma/Tahoma.ttf") format("truetype"), url("../fonts/Tahoma/Tahoma.woff") format("woff"); }
+  font-style: normal; }
 
 @font-face {
   font-family: "FontAwesome";
-  font-style: normal;
+  src: url("../fonts/FontAwesome/FontAwesome.woff2") format("woff2"), url("../fonts/FontAwesome/FontAwesome.woff") format("woff"), url("../fonts/FontAwesome/FontAwesome.ttf") format("truetype");
   font-weight: 400;
-  src: url("../fonts/FontAwesome/FontAwesome.eot?") format("eot"), url("../fonts/FontAwesome/FontAwesome.ttf") format("truetype"), url("../fonts/FontAwesome/FontAwesome.woff") format("woff"), url("../fonts/FontAwesome/FontAwesome.woff2") format("woff2"); }
+  font-style: normal; }
 
 /*********************************************/
 /*MAIN STYLES*/
