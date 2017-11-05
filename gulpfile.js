@@ -34,7 +34,7 @@ gulp.task('watch', function () {
     gulp.watch(['./app/**/*.html'], ['html']);          // watching changes in HTML
     gulp.watch(['./app/sass/**/*.scss'], ['sass']);     // watching changes in SASS
     gulp.watch(['./app/js/**/*.js'], ['js']);           // watching changes in JS
-    gulp.watch(['./app/img/sprite/*.*'], ['sprite']);   // watching changes in IMAGES
+    gulp.watch(['./app/image/sprite/*.*'], ['sprite']);   // watching changes in IMAGES
 });
 
 /*********************************************/
@@ -80,7 +80,7 @@ gulp.task('sprite', function (done) {
 });
 
 gulp.task('images', ['sprite'], function () {
-    return gulp.src('./app/img/**/*')                   // get the files
+    return gulp.src('./app/image/**/*')                   // get the files
         .pipe(imagemin({                                // minify images
             progressive: true,
             svgoPlugins: [{
@@ -95,7 +95,7 @@ gulp.task('images', ['sprite'], function () {
             interlaced: true
 
         }))
-        .pipe(gulp.dest('dist/img'));                   // where to put the files
+        .pipe(gulp.dest('dist/image'));                   // where to put the files
 });
 
 /*********************************************/
@@ -157,14 +157,14 @@ gulp.task('build', ['clean'], function () {
 /*********************************************/
 
 function buildSprite() {
-    var spriteData = gulp.src('./app/img/sprite/*.*')
+    var spriteData = gulp.src('./app/image/sprite/*.*')
         .pipe(spritesmith({
-            imgName: '../img/sprite.png',
+            imgName: '../image/sprite.png',
             cssName: '_sprite.scss',
             cssFormat: 'scss',
             padding: 5
         }));
 
-    spriteData.img.pipe(gulp.dest('./app/img'));
+    spriteData.img.pipe(gulp.dest('./app/image'));
     return spriteData.css.pipe(gulp.dest('./app/sass/components'));
 }

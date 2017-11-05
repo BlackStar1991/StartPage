@@ -803,48 +803,180 @@ hr {
 /*SIZES*/
 /*********************************************/
 /*********************************************/
+/*FONT FACE*/
+/*********************************************/
+/*********************************************/
+/*TRIANGLES*/
+/*********************************************/
+/*********************************************/
+/*CUT TEXT WITH ELLIPSIS*/
+/*********************************************/
+/*********************************************/
 /*FONTS*/
 /*********************************************/
+@font-face {
+  font-family: "Tahoma";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/Tahoma/Tahoma.eot?") format("eot"), url("../fonts/Tahoma/Tahoma.ttf") format("truetype"), url("../fonts/Tahoma/Tahoma.woff") format("woff"); }
+
+@font-face {
+  font-family: "FontAwesome";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/FontAwesome/FontAwesome.eot?") format("eot"), url("../fonts/FontAwesome/FontAwesome.ttf") format("truetype"), url("../fonts/FontAwesome/FontAwesome.woff") format("woff"), url("../fonts/FontAwesome/FontAwesome.woff2") format("woff2"); }
+
 /*********************************************/
 /*MAIN STYLES*/
 /*********************************************/
+html,
 body {
-  font-family: sans-serif;
-  font-size: 16px;
-  min-width: 320px;
-  position: relative; }
+  height: 100%; }
 
-/*********************************************/
-/*TYPOGRAPHY*/
-/*********************************************/
-/*********************************************/
-/*STICKY FOOTER*/
-/*********************************************/
-.body {
+body {
+  font-family: Tahoma, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  min-width: 320px;
+  position: relative;
   display: -ms-flexbox;
   display: flex;
-  min-height: 100vh;
   -ms-flex-direction: column;
-      flex-direction: column; }
+      flex-direction: column;
+  min-height: 100vh; }
+
+.wrapperBlock {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: 100%; }
+
+.bl_wrappen {
+  position: relative;
+  width: 100%;
+  height: 100%; }
+
+.blackWrapper {
+  display: -webkit-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background-color: #333333;
+  z-index: 1075; }
+
+.bl_overflow {
+  overflow: hidden; }
+
+.bl_buyOneClick {
+  position: relative;
+  width: 100%;
+  height: 100%; }
 
 .main {
-  -ms-flex: 1;
-      flex: 1; }
+  -ms-flex: 1 0 auto;
+      flex: 1 0 auto; }
+
+.footer {
+  -ms-flex: 0 0 auto;
+      flex: 0 0 auto; }
+
+img {
+  max-width: 100%;
+  height: auto; }
+
+a {
+  text-decoration: none;
+  color: #000; }
+  a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: #000; }
+
+p {
+  margin: 0;
+  padding: 0; }
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none; }
+
+button {
+  border: none;
+  padding: 0;
+  margin: 0; }
+
+input:focus::-webkit-input-placeholder,
+textarea:focus::-webkit-input-placeholder {
+  opacity: 0; }
+
+input:focus:-ms-input-placeholder,
+textarea:focus:-ms-input-placeholder {
+  opacity: 0; }
+
+input:focus::placeholder,
+textarea:focus::placeholder {
+  opacity: 0; }
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  opacity: 1;
+  transition: opacity .3s; }
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  opacity: 1;
+  transition: opacity .3s; }
+
+input::placeholder,
+textarea::placeholder {
+  opacity: 1;
+  transition: opacity .3s; }
+
+input::-moz-focus-outer, input::-moz-focus-inner,
+textarea::-moz-focus-outer,
+textarea::-moz-focus-inner {
+  border: 0;
+  outline: none; }
+
+.correct_right {
+  padding-right: 0 !important; }
+
+.correct_left {
+  padding-left: 0 !important; }
+
+.block_white {
+  background-color: #fff; }
 
 /*********************************************/
 /*HEADER*/
 /*********************************************/
-img {
-  margin-left: 5%; }
-
-.block {
-  font-size: 2em;
-  display: -ms-flexbox;
-  display: flex; }
-
 /*********************************************/
 /*SECTIONS*/
 /*********************************************/
+.mainWrapper {
+  position: relative;
+  width: 100%;
+  min-width: 320px;
+  height: 100%;
+  padding: 0;
+  margin: 0 !important;
+  overflow: hidden; }
+
+.header {
+  width: 100%;
+  min-height: 40px;
+  background-color: #f00; }
+
+.footer {
+  width: 100%;
+  min-height: 80px; }
+
 /*********************************************/
 /*FOOTER*/
 /*********************************************/
@@ -863,26 +995,8 @@ img {
 /*********************************************/
 /*Desktop First Method*/
 /*********************************************/
-/* Large Devices, Wide Screens */
-/* Medium Devices, Desktops */
-/* Small Devices, Tablets */
-/* Extra Small Devices, Phones */
-@media only screen and (max-width: 30em) {
-  /*Disable Animation on Mobile Devices*/
-  .animated {
-    /*CSS transitions*/
-    transition-property: none !important;
-    /*CSS transforms*/
-    transform: none !important;
-    /*CSS animations*/
-    animation: none !important; } }
-
-/* Custom, iPhone Retina */
-/*********************************************/
-/*Mobile First Method*/
-/*********************************************/
-/* Custom, iPhone Retina */
-/* Extra Small Devices, Phones */
-/* Small Devices, Tablets */
-/* Medium Devices, Desktops */
-/* Large Devices, Wide Screens */
+/* Large Devices, Wide Screens 1280px */
+/* Medium Devices, Desktops 992px */
+/* Small Devices, Tablets 768px */
+/* Extra Small Devices, Phones 480px */
+/* Custom, iPhone Retina 320px */

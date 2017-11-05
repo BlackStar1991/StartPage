@@ -3,6 +3,7 @@ node_modules
 .idea
 idea/
 prepros.cfg
-
-
-dist/
+app/bower/
+app/fonts/FontAwesome/
+app/fonts/Tahoma/
+package-lock.json
