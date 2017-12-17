@@ -23,11 +23,12 @@ body {
 }
 
 body {
+  position: relative;
   font-family: Tahoma, sans-serif;
   font-size: 16px;
   font-weight: 400;
   min-width: 320px;
-  position: relative;
+
 
   display: -webkit-box;
   display: flex;
@@ -172,32 +173,6 @@ textarea {
   margin: 0 !important;
   overflow: hidden;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.header{
-  width: 100%;
-  min-height: 40px;
-  background-color: #f00;
-}
-
-.footer{
-  width: 100%;
-  min-height: 80px;
-}
-
 
 
 

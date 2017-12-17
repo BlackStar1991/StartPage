@@ -7,9 +7,14 @@ var gulp = require("gulp"),                             // gulp core
     gulpif = require('gulp-if'),                        // conditionally run a task
     clean = require('gulp-clean'),                      // removing files and folders
     uglify = require('gulp-uglify'),                    // uglifies the js
+
+    concat = require('gulp-concat'),
     rename = require('gulp-rename'),                    // rename files
     useref = require('gulp-useref'),                    // parse build blocks in HTML files to replace references
-    minifyCss = require('gulp-minify-css'),             // minify the css files
+
+    csso = require('gulp-csso'),                        // minify the css files
+    cmq = require('gulp-combine-mq'),
+
     autoprefixer = require('gulp-autoprefixer'),        // sets missing browserprefixes
     browserSync = require('browser-sync').create(),     // inject code to all devices
     imagemin = require('gulp-imagemin'),                // minify images
@@ -58,6 +63,8 @@ gulp.task('sass', ['sprite'], function () {
             browsers: ['last 5 versions'],
             cascade: true
         }))
+        .pipe(cmq())
+        .pipe(csso())
         .pipe(gulp.dest('app/css'))                     // where to put the file
         .pipe(browserSync.stream());                    // browsersync stream
 });
@@ -67,8 +74,9 @@ gulp.task('sass', ['sprite'], function () {
 /*********************************************/
 
 gulp.task('js', function () {
-    return gulp.src('./app/js/**/*.js')                 // get the files
-        .pipe(browserSync.stream());                    // browsersync stream
+    return gulp.src('./app/js/*.js')                 // get the files
+        .pipe(browserSync.stream())
+    // browsersync stream
 });
 
 /*********************************************/
@@ -145,9 +153,8 @@ gulp.task('build', ['clean'], function () {
     gulp.start('extrass');                              // extras task
 
     return gulp.src('app/*.html')
-
-        .pipe(gulpif('*.js', uglify()))                 // uglify js-files
-        .pipe(gulpif('*.css', minifyCss()))             // minify css-files
+        .pipe(gulpif('app/*.js', uglify()))                 // uglify js-files
+        .pipe(gulpif('app/*.css', csso()))                // minify css-files
         .pipe(useref())
         .pipe(gulp.dest('./dist'));                     // where to put the files
 });
@@ -168,3 +175,17 @@ function buildSprite() {
     spriteData.img.pipe(gulp.dest('./app/image'));
     return spriteData.css.pipe(gulp.dest('./app/sass/components'));
 }
+
+/*********************************************/
+/*MINIMIZATION JS*/
+/*********************************************/
+gulp.task('jsmin', function(){
+    gulp.src(['./app/js/*.js'])
+        .pipe(concat('common.js'))
+        .pipe(uglify())
+        .pipe(rename("./common-xmin.js"))
+        .pipe(gulp.dest('app/js'));
+});
+
+
+

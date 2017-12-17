@@ -1,7 +1,9 @@
 window.onload = function() {
 
     var blackWrapper = $(".blackWrapper"),
-        body = $("body");
+        body = $("body"),
+        active = "active",
+        $window = $(window);
 
     ///  sliderEffect
     function sliderEffectForButtons(button, element, duration) {
@@ -17,47 +19,72 @@ window.onload = function() {
         });
     }
 
+    /// scrollButton
+    function slideSubMenu(btn, fieldUnderBtn, displayView){
+        btn.each(function(){
+            $(this).on({
+                click: function (){
+                    if ($window.width() <= displayView) {
+                        fieldUnderBtn.slideToggle(400);
+                    }
+                }
+            });
+        });
+    }
 
-//    Discount Products  - Скидки
-    /*
-       $(".slider_discountProducts").owlCarousel({
-           items: 5,
-           loop: true,
-           nav: true,
-           navText: true,
-           dots: false,
-           autoplay: false,
-           stopOnHover: true,
-           margin: 20,
-           smartSpeed: 1000,
-           autoplayTimeout: 4000,
-           pagination: false,
-           responsiveClass: true,
-           responsive: {
-               1200: {
-                   items: 5
-               },
-               991: {
-                   items: 3
-               },
-               550: {
-                   items: 2,
-                   margin: 5
-               },
-               450: {
-                   margin: 0,
-                   items: 1,
-                   center: true
-               },
 
-               320: {
-                   items: 1,
-                   center: true
-               }
 
-           }
-       });
-   */
+////// HITs slider
+
+    // function sliderHits() {
+    //
+    //     var currentItems = 4,
+    //         sliderItems = $(".bl_slider__item").length,
+    //         currentLoop;
+    //     if (sliderItems > currentItems) {
+    //         currentLoop = true;
+    //     }else {
+    //         currentLoop = false;
+    //     }
+    //
+    //
+    //     $(".bl_sliderHits").owlCarousel({
+    //         items: currentItems,
+    //         loop: currentLoop,
+    //         nav: true,
+    //         navText: true,
+    //         dots: false,
+    //         autoplay: false,
+    //         stopOnHover: true,
+    //         // margin: 6,
+    //         smartSpeed: 1000, //Время движения слайда
+    //         autoplayTimeout: 4000, //Время смены слайда
+    //         pagination: false,
+    //         responsiveClass: true,
+    //         responsive: {
+    //             1200: {
+    //                 items: 4
+    //             },
+    //             992: {
+    //                 items: 3,
+    //                 center: true
+    //             },
+    //             550: {
+    //
+    //                 dots: false,
+    //                 items: 2
+    //             },
+    //             320: {
+    //                 dots: false,
+    //                 items: 1,
+    //                 center: true
+    //             }
+    //
+    //         }
+    //     });
+    // }
+    //
+    // sliderHits();
 
 /// SLICK SLIDER
 
