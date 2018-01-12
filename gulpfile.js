@@ -15,11 +15,16 @@ var gulp = require("gulp"),                             // gulp core
     csso = require('gulp-csso'),                        // minify the css files
     cmq = require('gulp-combine-mq'),
 
+
     autoprefixer = require('gulp-autoprefixer'),        // sets missing browserprefixes
     browserSync = require('browser-sync').create(),     // inject code to all devices
     imagemin = require('gulp-imagemin'),                // minify images
     pngquant = require('imagemin-pngquant'),            // minify png-format images
-    spritesmith = require('gulp.spritesmith');          // create sprites
+    spritesmith = require('gulp.spritesmith'),          // create sprites
+
+    htmlnano = require('gulp-htmlnano'),
+    options = {removeComments: false};
+
 
 /*********************************************/
 /*BROWSERSYNC (LOCAL SERVER)*/
@@ -186,6 +191,12 @@ gulp.task('jsmin', function(){
         .pipe(rename("./common-xmin.js"))
         .pipe(gulp.dest('app/js'));
 });
-
-
-
+/*********************************************/
+/*MINIMIZATION HTML*/
+/*********************************************/
+gulp.task('htmlmin', function() {
+    return gulp
+        .src('dist/*.html')
+        .pipe(htmlnano(options))
+        .pipe(gulp.dest('./dist'));
+});
