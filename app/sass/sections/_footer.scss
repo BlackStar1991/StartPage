@@ -4,3 +4,132 @@
   min-height: 80px;
   background-color: #ff0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+.scroller {
+  position: fixed;
+  bottom: 2%;
+  right: 4%;
+  width: 44px;
+  height: 44px;
+  transition: all .12s ease-in;
+  background: linear-gradient(180deg, rgba(103, 220, 0, .2), rgba(77, 166, 0, .2));
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  opacity: 1;
+  z-index: 15;
+
+  &:hover, &:focus {
+    background: linear-gradient(180deg, #67DC00, #4DA600);
+  }
+}
+
+.scroller__icon {
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background: 0 0;
+
+  &:before {
+    content: url("../image/svg-icons/arrow-anchor.svg");
+  }
+}
+
+
+.bl_popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, .95);
+  z-index: 1000;
+}
+
+.bl_popup__inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 100%;
+  min-height: 400px;
+  min-width: 300px;
+  z-index: 1001;
+}
+
+.bl_popup__rotate {
+  position: fixed;
+  width: 100vw;
+  min-height: 100%;
+  background-color: #000;
+  z-index: 1006;
+}
+
+.btn_close__iframe {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: #fff;
+  background-color: #195cbd;
+  border: 2px solid #fff;
+  transition: all .2s;
+  z-index: 1002;
+
+  &:hover, &:focus {
+    outline: 0;
+    transition: all .2s;
+    background-color: #195cbd;
+  }
+
+  &:after {
+    content: "\2716";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 30px;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    color: inherit;
+  }
+}
+
+
+
+//.btn_playForReal {
+//  position: absolute;
+//  left: 50%;
+//  bottom: 10%;
+//  -webkit-transform: translateX(-50%);
+//  -ms-transform: translateX(-50%);
+//  transform: translateX(-50%);
+//  background-color: #34c475;
+//  padding: 16px 36px;
+//  border-radius: 27px;
+//
+//  &:hover, &:focus {
+//    background-color: #fff;
+//    color: #34c475;
+//  }
+//}
+

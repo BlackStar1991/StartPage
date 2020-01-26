@@ -1,11 +1,12 @@
 /*********************************************/
 /*@IMPORTS*/
 /*********************************************/
-@import "vendors/global";
+//@import "vendors/global";
 @import "helpers/global";
 @import "components/global";
 @import "helpers/mixins";
 @import "components/sprite";
+
 /*********************************************/
 /*FONTS*/
 /*********************************************/
@@ -20,6 +21,8 @@
 html,
 body {
   height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -47,43 +50,17 @@ body {
   -webkit-box-orient: vertical;
   flex-direction: column;
 
+  justify-content: space-between;
+
   position: relative;
   width: 100%;
   height: 100%;
+  min-height: 100vh;
 }
 
-.bl_wrappen {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.blackWrapper {
-
-  display: -webkit-box;
-  position: fixed;
-
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  background-color: rgb(51, 51, 51);
-  z-index: 1075;
-}
-
-.bl_overflow {
-  overflow: hidden;
-}
-
-.bl_buyOneClick {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
 
 .main {
- 
+  width: 100%;
 }
 
 
@@ -92,6 +69,17 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+/// Clear CEO
+
+//img:not([alt]) {
+//  border: 8px dashed #7fff00 !important
+//}
+//
+//img[alt=""] {
+//  border: 8px dashed #7fff00 !important
+//}
+
 
 a {
   text-decoration: none;
@@ -103,6 +91,7 @@ a {
     color: #000;
   }
 }
+
 p {
   margin: 0;
   padding: 0;
@@ -116,6 +105,7 @@ ul {
 
 button {
   border: none;
+  cursor: pointer;
   padding: 0;
   margin: 0;
 }
@@ -141,17 +131,23 @@ textarea {
   }
 
 }
-.correct_right {
-  padding-right: 0!important;
-}
 
-.correct_left {
-  padding-left: 0!important;
-}
 
-.block_white {
-  background-color: #fff;
-}
+// SLICK Helper
+
+//
+//.bl_partners__item:not(:nth-child(-n+5)) {
+//  display: none;
+//}
+//
+//.slick-slide.bl_partners__item:not(:nth-child(-n+5)) {
+//  display: block;
+//}
+
+
+
+
+
 /*********************************************/
 /*HEADER*/
 /*********************************************/
@@ -162,17 +158,42 @@ textarea {
 /*SECTIONS*/
 /*********************************************/
 
-.mainWrapper{
-  position: relative;
-  width: 100%;
-  min-width: 320px;
-  height: 100%;
-  padding: 0;
-  margin: 0 !important;
+
+
+
+
+
+
+
+
+//////////////////////////
+
+::-webkit-scrollbar {
+  width: 4px;
 }
 
+::-webkit-scrollbar-thumb {
+  border-width: 1px 1px 1px 2px;
+  border-color: #777;
+  background: linear-gradient(0deg, #17BDFE 0.23%, #DDFF0B 42.56%, #FE8E04 64.53%, #E01D00 90.76%);;
+}
 
+//::-webkit-scrollbar-thumb:hover {
+//  background-color: #6B0098;
+//}
 
+::-webkit-scrollbar-track-piece {
+  background-color: #181A25;
+}
+
+/////
+::selection {
+  background: $color_selection;
+}
+
+::-moz-selection {
+  background: $color_selection;
+}
 
 
 

@@ -1,172 +1,73 @@
-/*********************************************/
-/*DEPENDENCIES*/
-/*********************************************/
-
-var gulp = require("gulp"),                             // gulp core
-    sass = require('gulp-sass'),                        // sass compiler
-    gulpif = require('gulp-if'),                        // conditionally run a task
-    clean = require('gulp-clean'),                      // removing files and folders
-    uglify = require('gulp-uglify'),                    // uglifies the js
-
-    concat = require('gulp-concat'),
-    rename = require('gulp-rename'),                    // rename files
-    useref = require('gulp-useref'),                    // parse build blocks in HTML files to replace references
-
-    csso = require('gulp-csso'),                        // minify the css files
-    cmq = require('gulp-combine-mq'),
+const gulp = require("gulp");                             // gulp core
+const sass = require('gulp-sass');                        // sass compiler
+const browserSync = require('browser-sync').create();     // inject code to all devices
 
 
-    autoprefixer = require('gulp-autoprefixer'),        // sets missing browserprefixes
-    browserSync = require('browser-sync').create(),     // inject code to all devices
-    imagemin = require('gulp-imagemin'),                // minify images
-    pngquant = require('imagemin-pngquant'),            // minify png-format images
-    spritesmith = require('gulp.spritesmith'),          // create sprites
+const autoprefixer = require('gulp-autoprefixer');       // sets missing browserprefixes
+const  csso = require('gulp-csso');                        // minify the css files
+// const cmq = require('gulp-combine-mq');
 
-    htmlnano = require('gulp-htmlnano'),
-    options = {removeComments: false};
+const concat = require('gulp-concat');
+const uglify = require('gulp-uglify');
 
+const del = require('del');
 
-/*********************************************/
-/*BROWSERSYNC (LOCAL SERVER)*/
-/*********************************************/
+const gulpif = require('gulp-if');
+const useref = require('gulp-useref');
 
-gulp.task('default', ['watch'], function () {           // start server
-    browserSync.init({
-        server: {baseDir: "./app/"}                     // base dir
-    });
-});
+const imagemin = require('gulp-imagemin'),
+       pngquant = require('imagemin-pngquant'),            // minify png-format images
+     spritesmith = require('gulp.spritesmith');
+
+const changed = require('gulp-changed'),
+      options = {removeComments: false};
+
 
 /*********************************************/
 /*WATCHER (WATCHING FILE CHANGES)*/
 /*********************************************/
 
-gulp.task('watch', function () {
-    gulp.watch(['./app/**/*.html'], ['html']);          // watching changes in HTML
-    gulp.watch(['./app/sass/**/*.scss'], ['sass']);     // watching changes in SASS
-    gulp.watch(['./app/js/**/*.js'], ['js']);           // watching changes in JS
-    gulp.watch(['./app/image/sprite/*.*'], ['sprite']);   // watching changes in IMAGES
-});
-
-/*********************************************/
-/*HTML TASKS*/
-/*********************************************/
-
-gulp.task('html', function () {
-    gulp.src('./app/index.html')                        // get the files
-        .pipe(gulp.dest('./app/'))                      // where to put the file
-        .pipe(browserSync.stream());                    // browsersync stream
-});
-
-/*********************************************/
-/*SASS TASKS*/
-/*********************************************/
-
-gulp.task('sass', ['sprite'], function () {
-    gulp.src('./app/sass/**/*')                         // get the files
-        .pipe(sass().on('error', sass.logError))        // add prefixes
+function styles() {
+    return gulp.src('./app/sass/**/*')
+        .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer({
-            browsers: ['last 5 versions'],
-            cascade: true
+            cascade: false
         }))
-        .pipe(cmq())
         .pipe(csso())
-        .pipe(gulp.dest('app/css'))                     // where to put the file
-        .pipe(browserSync.stream());                    // browsersync stream
-});
+        .pipe(gulp.dest('app/css'))
+        .pipe(browserSync.stream());
+}
 
-/*********************************************/
-/*JS TASKS*/
-/*********************************************/
 
-gulp.task('js', function () {
+
+function scripts() {
     return gulp.src('./app/js/*.js')                 // get the files
         .pipe(browserSync.stream())
     // browsersync stream
-});
+}
 
-/*********************************************/
-/*IMAGES TASKS*/
-/*********************************************/
 
-gulp.task('sprite', function (done) {
-    buildSprite().on('end', done);
-});
-
-gulp.task('images', ['sprite'], function () {
-    return gulp.src('./app/image/**/*')                   // get the files
-        .pipe(imagemin({                                // minify images
-            progressive: true,
-            svgoPlugins: [{
-                removeViewBox: false
-            }, {
-                cleanupIDs: false
-            }],
-            use: [pngquant({                            // minify png-format images
-                quality: '50-70',
-                speed: 4
-            })],
-            interlaced: true
-
-        }))
-        .pipe(gulp.dest('dist/image'));                   // where to put the files
-});
-
-/*********************************************/
-/*FONTS TASKS*/
-/*********************************************/
-
-gulp.task('fonts', function () {
+function fonts() {
     return gulp.src('./app/fonts/**/*')                 // get the files
         .pipe(gulp.dest('dist/fonts'));                 // where to put the files
-});
+}
 
 /*********************************************/
 /*LIBS TASKS (PERSONAL DEVELOPER LIBS)*/
 /*********************************************/
 
-gulp.task('libs', function () {
+function libs() {
     return gulp.src('./app/libs/**/*')                  // get the files
         .pipe(gulp.dest('dist/libs'));                  // where to put the files
-});
+}
 
-/*********************************************/
-/*EXTRASS TASKS (ROOT FILES, EXCEPT HTML)*/
-/*********************************************/
-
-gulp.task('extrass', function () {
+function extrass () {
     return gulp.src([                                   // get the files
-        'app/*.*',
-        '!app/*.html'                                   // except '.html'
+        'app/*.html'                                   // except '.html'
     ]).pipe(gulp.dest('dist'));                         // where to put the files
-});
+}
 
 
-/*********************************************/
-/*BUILD TASKS*/
-/*********************************************/
-
-gulp.task('clean', function () {
-    return gulp.src('dist', {read: false})
-        .pipe(clean());                                 // clean dir
-});
-
-
-gulp.task('build', ['clean'], function () {
-    gulp.start('images');                               // images task
-    gulp.start('fonts');                                // fonts task
-    gulp.start('libs');                                 // libs task
-    gulp.start('extrass');                              // extras task
-
-    return gulp.src('app/*.html')
-        .pipe(gulpif('app/*.js', uglify()))                 // uglify js-files
-        .pipe(gulpif('app/*.css', csso()))                // minify css-files
-        .pipe(useref())
-        .pipe(gulp.dest('./dist'));                     // where to put the files
-});
-
-/*********************************************/
-/*FUNCTIONS*/
-/*********************************************/
 
 function buildSprite() {
     var spriteData = gulp.src('./app/image/sprite/*.*')
@@ -181,22 +82,85 @@ function buildSprite() {
     return spriteData.css.pipe(gulp.dest('./app/sass/components'));
 }
 
-/*********************************************/
-/*MINIMIZATION JS*/
-/*********************************************/
-gulp.task('jsmin', function(){
-    gulp.src(['./app/js/*.js'])
-        .pipe(concat('common.js'))
-        .pipe(uglify())
-        .pipe(rename("./common-xmin.js"))
-        .pipe(gulp.dest('app/js'));
-});
-/*********************************************/
-/*MINIMIZATION HTML*/
-/*********************************************/
-gulp.task('htmlmin', function() {
-    return gulp
-        .src('dist/*.html')
-        .pipe(htmlnano(options))
+
+function sprite(done) {
+    buildSprite().on('end', done);
+}
+
+
+
+function images() {
+    return gulp.src('./app/image/**/*')                   // get the files
+        .pipe(imagemin({                                // minify images
+
+            progressive: true,
+            svgoPlugins: [{
+                removeViewBox: false
+            }, {
+                cleanupIDs: false
+            }],
+            use: [pngquant({                            // minify png-format images
+                quality: '60-70',
+                speed: 4
+            })],
+            interlaced: true
+
+        }))
+        .pipe(gulp.dest('dist/image'));                   // where to put the files
+}
+
+
+
+function watch(){
+    browserSync.init({
+        server:{
+            baseDir: "./app/"
+        }
+    });
+    gulp.watch('./app/sass/**/*.scss', styles);
+    gulp.watch('./app/index.html').on('change', browserSync.reload);
+    gulp.watch('./app/js/**/*.js').on('change', browserSync.reload);
+    gulp.watch('./app/image/sprite/*.*').on('change', browserSync.reload);
+
+}
+
+
+function clean () {
+   return del(['dist/**', '!dist'])
+}
+
+
+
+
+function finished() {
+
+    return gulp.src('app/*.html')
+        .pipe(gulpif('app/*.js', uglify()))   // uglify js-files
+        .pipe(gulpif('app/*.css', csso()))    // minify css-files
+        .pipe(useref())
         .pipe(gulp.dest('./dist'));
-});
+}
+
+
+
+gulp.task('extrass', extrass);
+gulp.task('styles', styles);
+gulp.task('scripts', scripts);
+gulp.task('libs', libs);
+gulp.task('fonts', fonts);
+
+gulp.task('sprite', sprite);
+gulp.task('images', images);
+
+gulp.task('clean', clean);
+gulp.task('finished', finished);
+
+gulp.task('watch', watch);
+
+
+const standartWatch = gulp.parallel(watch);
+gulp.task('default', standartWatch);
+
+
+
+gulp.task('build', gulp.series('clean', 'styles', 'scripts', 'images', 'fonts', 'libs', 'extrass', 'finished'));

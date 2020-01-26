@@ -40,82 +40,42 @@
 </head>
 
 <body class="body">
-<!--[if lt IE 10]>
-<p class="browsehappy">Ваш браузер <strong>устарел</strong>. Пожалуйста <a href="http://browsehappy.com/">обновите</a>
-    его.</p>
-<![endif]-->
-
 <div class="wrapperBlock">
 
+    <div class="wrapper">
+        <header id="header" class="header">
 
-    <!-- ---------------------------------------- HEADER -------------------------------------------------------- -->
-    <header id="header" class="header">
-        <div class="mainWrapper">
+        </header>
 
+        <main class="main">
 
-        </div>
-    </header>
-    <!-- ----------------------------------------- MAIN --------------------------------------------------------- -->
-    <main class="main">
-        <div class="mainWrapper">
-            Start page
-        </div>
-    </main>
-    <!-- ---------------------------------------- FOOTER --------------------------------------------------------- -->
+        </main>
+    </div>
+
     <footer class="footer">
-
+        <p>Footer</p>
     </footer>
-</div>
-<div class="blackWrapper hidden"></div>
 
-
-<!-- ANCOR -->
-
-<div class="bl_ancor hidden-xs hidden">
-    <div class="bl_wrappen">
-        <a class="bl_ancor__link bl_ancor__icon" href="#header">Вверх</a>
-    </div>
 </div>
 
-<!-- POPUP BIFORE ADD TO SHOPBAG-->
-
-<div class="popup_likeShopbag hidden">
-    <div class="wrapperBlock">
-        <button class="popup_likeShopbag__close">
-            <i class="fa fa-times decor_icon__close" aria-hidden="true"></i>
-        </button>
-        <p class="popup_likeShopbag__text popup_likeShopbag__text_main">Подтверждение</p>
-
-        <div class="popup_likeShopbag__product">
-            <p class="shoppingBasket_product__name">Электро-сеть ываыв ыв аываы аыв аываываыва ываываыва ываываываываыва
-                ываыва</p>
-        </div>
-        <p class="popup_likeShopbag__text  popup_likeShopbag__text_main">добавлен в корзину</p>
-
-        <div class="popup_likeShopbag__buttons">
-            <button class="button_buyProduct popup_likeShopbag__continueBuying">
-                <span class="button_buyProduct__text popup_likeShopbag__buttons_text">Продолжить покупки</span>
-            </button>
-            <div class="button_buyProduct popup_likeShopbag__goToShopbag">
-                <a href="#" class="button_buyProduct__text popup_likeShopbag__goToShopbag_text">Оформление заказа</a>
-            </div>
-        </div>
-
-    </div>
+<div class="bl_popup hidden">
+    <button class="btn_close__iframe" type="button"></button>
+    <div class="bl_popup__inner"></div>
+    <div class="bl_popup__rotate hidden"></div>
 </div>
+
+<div class="scroller">
+    <button type="button" class="scroller__icon"></button>
+</div>
+
+
+
 
 
 <script src="libs/jquery.min.js"></script>
 
-<!-- build:js js/libs.min.js -->
-<script src="bower/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="bower/owl.carousel/dist/owl.carousel.min.js"></script>
-<script src="bower/fancybox/dist/jquery.fancybox.min.js"></script>
-<script src="bower/jquery.maskedinput/dist/jquery.maskedinput.min.js"></script>
-<!-- endbuild -->
-
 <!-- build:js js/common.min.js -->
-<script src="js/common.js"></script>
+<script src="js/common.js" async></script>
 <!-- endbuild -->
 
 </body>
